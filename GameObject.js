@@ -73,6 +73,7 @@ Game_Cell.prototype.create_living_sprite = function() {
 
 Game_Cell.prototype.change_state = function() {
 	SceneManager._stage.removeChild(this._sprite);
+	this._sprite.destroy(true);
 	if (this._state == 0) {
 		this._state = 1
 		this.create_living_sprite()
