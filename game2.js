@@ -63,12 +63,16 @@ SceneManager.scene_changing = function() {
 
 SceneManager.load_images = function() {
 	var list = SceneManager._scene.image_list()
-	for (var i = 0; i < list.length; i++) {
-		if (!(PIXI.loader.resources[list[i]])) {
-			PIXI.loader.add(list[i])
+	if (list.length > 0) {
+		for (var i = 0; i < list.length; i++) {
+			if (!(PIXI.loader.resources[list[i]])) {
+				PIXI.loader.add(list[i])
+			}
 		}
+		PIXI.loader.load(SceneManager.run)
+	} else {
+		SceneManager.run
 	}
-	PIXI.loader.load(SceneManager.run)
 }
 
 SceneManager.run = function() {
