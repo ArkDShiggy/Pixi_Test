@@ -71,7 +71,7 @@ SceneManager.load_images = function() {
 		}
 		PIXI.loader.load(SceneManager.run)
 	} else {
-		SceneManager.run
+		SceneManager.run()
 	}
 }
 
