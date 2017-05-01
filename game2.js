@@ -37,6 +37,12 @@ SceneManager.start = function(){
 
 SceneManager.end = function() {
 	SceneManager._scene.end_scene();
+	document.body.removeChild(SceneManager._renderer.view);
+	SceneManager._renderer.plugins.interaction.destroy();
+	SceneManager._renderer = null;
+	SceneManager._stage.destroy(true);
+	SceneManager._stage = null;
+			
 }
 
 SceneManager.basic_update = function()
@@ -110,8 +116,8 @@ Scene_Game.prototype.constructor = Scene_Game;
 
 Scene_Game.prototype.image_list = function() {
 	var list = [
-		"Images/shy_guy.png",
-		"Images/cat.png"
+//		"Images/shy_guy.png",
+//		"Images/cat.png"
 	];
 	return list
 };
@@ -135,7 +141,7 @@ Scene_Game.prototype.create_UI = function() {
 	this._UI.y = 0
 	this._buttons = []
 	var y = (Default._height - Default._uiOffset) * this._scale;
-	var rect = new PIXI.Rectangle(0, y, 16 * this._scale, 8 * this._scale);
+	var rect = new PIXI.Rectangle(32 * this._scale, y, 16 * this._scale, 8 * this._scale);
 	this._buttons.push(new Game_Button(rect, 0xFF0000, this.play_once));
 	SceneManager._stage.addChild(this._UI);
 }
