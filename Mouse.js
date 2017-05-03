@@ -9,11 +9,14 @@ Mouse._downX = null;
 Mouse._downY = null;
 Mouse._upX = null;
 Mouse._upY = null;
+Mouse._x = null;
+Mouse._y = null;
 
 Mouse.downHandler = function(event) {
 	Mouse._mouseDown = true;
 	Mouse._downX = event.clientX
 	Mouse._downY = event.clientY
+	console.log(Mouse._downX, Mouse._downY)
   	event.preventDefault();
 };
 
@@ -30,6 +33,12 @@ Mouse.upHandler = function(event) {
 	event.preventDefault();
 };
 
+Mouse.moveHandler = function(event) {
+	Mouse._x = event.clientX
+	Mouse._y = event.clientY
+	event.preventDefault();
+}
+
 window.addEventListener(
   "mousedown", Mouse.downHandler, false
 );
@@ -38,13 +47,6 @@ window.addEventListener(
   "mouseup", Mouse.upHandler, false
 );
 
-/*
-window.addEventListener(
+document.addEventListener(
   "mousemove", Mouse.moveHandler, false
 );
-Mouse.moveHandler = function(event) {
-	Mouse
-	event.preventDefault();
-}
-
-*/
