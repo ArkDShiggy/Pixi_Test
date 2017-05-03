@@ -20,6 +20,7 @@ Colors._borderColor = 0x000000
 Colors._livingColor = 0x009900
 Colors._deadColor = 0xffff99
 
+
 function Scene_Game() {
 	this.initialize.apply(this, arguments);
 	console.log("test");
@@ -30,8 +31,9 @@ Scene_Game.prototype.constructor = Scene_Game;
 
 Scene_Game.prototype.image_list = function() {
 	var list = [
+
 		Background
-	//	"Images/cat.png"
+
 	];
 	return list
 };
@@ -51,6 +53,7 @@ Scene_Game.prototype.create_UI = function() {
 	this._UI.x = Math.round((window.innerWidth - Default._width * this._scale)/2)
 	this._buttons = []
 	var y = (Default._height - Default._uiOffset) * this._scale;
+
 	var rect = new PIXI.Rectangle(24 * this._scale, y, 16 * this._scale, 8 * this._scale);
 	this._buttons.push(new Game_Button(rect, 0xFF0000, this.autoplay));
 	SceneManager._stage.addChild(this._UI);
