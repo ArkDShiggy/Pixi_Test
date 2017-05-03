@@ -1,7 +1,7 @@
 <!-- *********************************************************************** -->
 <!--                                                                         -->
 <!--                                                      :::      ::::::::  -->
-<!-- index.html                                         :+:      :+:    :+:  -->
+<!-- square.html                                        :+:      :+:    :+:  -->
 <!--                                                  +:+ +:+         +:+    -->
 <!-- By: jcatinea <marvin@42.fr>                    +#+  +:+       +#+       -->
 <!--                                              +#+#+#+#+#+   +#+          -->
@@ -14,11 +14,21 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>PIXI tests</title>
+  <title>Magic square</title>
 </head>
+  <script src="pixi.min.js"></script>
+  <script src="general.js"></script>
+ <script src="Mouse.js"></script>
+  <script src="game1.js"></script>
 
-<body>
-  	<p><a href= "conway.html">Conway's Game of Life</a><p>
-	<p><a href= "square.html">Magic square</a><p> 
+<body style = "margin:0; overflow:hidden;">
+  <script type="text/javascript">
+    var type = "WebGL"
+    if(!PIXI.utils.isWebGLSupported()){
+      type = "canvas"
+  	}
+	SceneManager.start()
+    PIXI.utils.sayHello(type)
+  </script>
 </body>
 </html>
