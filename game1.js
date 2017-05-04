@@ -93,7 +93,7 @@ Scene_Game.prototype.create_square_area = function() {
 	for (var i = 0; i < 9; i++) {
 		this._squareArea.drawRect(5 + (i % 3) * 55, 5 + Math.floor(i / 3) * 55, 50, 50)
 	}
-	this._squareArea.x = 85;
+	this._squareArea.x = 75;
 	this._squareArea.y = 50;
 	this._container.addChild(this._squareArea);
 }
@@ -101,7 +101,7 @@ Scene_Game.prototype.create_square_area = function() {
 Scene_Game.prototype.create_pieces = function() {
 	this._pieces = []
 	this._default_area = new PIXI.Container;
-	this._default_area.x = 85
+	this._default_area.x = 75
 	this._default_area.y = 250
 	for (var i = 0; i < 9; i++) {
 		piece = new Game_Piece(i, this._default_area) // i + 1 ?
