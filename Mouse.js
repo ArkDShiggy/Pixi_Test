@@ -12,12 +12,21 @@ Mouse._upY = null;
 Mouse._x = null;
 Mouse._y = null;
 
-Mouse.downHandler = function(event) {
+Mouse.touch_event = function(event) {
+	if (event instanceof TouchEvent) {
+
+		event = event.changedTouches[0]
+	}
+	return event
+}
+
+Mouse.downHandler = function(true_event) {
+	event = Mouse.touch_event(true_event)
 	Mouse._mouseDown = true;
 	Mouse._downX = event.clientX
 	Mouse._downY = event.clientY
 	console.log(Mouse._downX, Mouse._downY)
-  	event.preventDefault();
+  	true_event.preventDefault();
 };
 
 Mouse.update = function() {
@@ -26,21 +35,35 @@ Mouse.update = function() {
 	Mouse._mouseClick = false;
 }
 
-Mouse.upHandler = function(event) {
+Mouse.upHandler = function(true_event) {
+	event = Mouse.touch_event(true_event)
 	Mouse._mouseUp = true;
 	Mouse._upX = event.clientX
 	Mouse._upY = event.clientY
-	event.preventDefault();
+	true_event.preventDefault();
 };
 
-Mouse.moveHandler = function(event) {
+Mouse.moveHandler = function(true_event) {
+	event = Mouse.touch_event(true_event)
 	Mouse._x = event.clientX
 	Mouse._y = event.clientY
-	event.preventDefault();
+	true_event.preventDefault();
 }
 
 window.addEventListener(
   "mousedown", Mouse.downHandler, false
+);
+
+window.addEventListener(
+  "touchstart", Mouse.downHandler, false
+);
+
+window.addEventListener(
+  "touchend", Mouse.upHandler, false
+);
+
+document.addEventListener(
+  "touchmove", Mouse.moveHandler, false
 );
 
 window.addEventListener(
