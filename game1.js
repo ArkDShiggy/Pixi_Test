@@ -21,7 +21,6 @@ window.addEventListener(
 );
 
 
-
 function Scene_Game() {
 	this.initialize.apply(this, arguments);
 	console.log("test");
@@ -45,6 +44,7 @@ Scene_Game.prototype.start_scene = function() {
 	this.create_background();
 	this.create_container();
 	SceneManager._stage.addChild(this._container);
+	alert('Place each number in the big central square. The sum of the number in each row, column and diagonal must be equal.')
 };
 
 Scene_Game.prototype.create_background = function() {
@@ -110,7 +110,7 @@ Scene_Game.prototype.create_pieces = function() {
 	this._container.addChild(this._default_area)
 }
 
-Scene_Game.prototype.update_mouseDown = function() {
+Scene_Game.prototype.select_piece = function() {
 	for (var i = 0; i < 9; i++) {
 		if (this._pieces[i]._sprite.get_clicked()) {
 			this._activePiece = this._pieces[i];
@@ -120,13 +120,13 @@ Scene_Game.prototype.update_mouseDown = function() {
 				}
 			}
 			this._activePiece._sprite.parent.removeChild(this._activePiece._sprite);
-			SceneManager._stage.addChild(this._activePiece._sprite);
 			this._activePiece._sprite.scale = new PIXI.Point(this._scale, this._scale);
+			SceneManager._stage.addChild(this._activePiece._sprite);
 		}
 	}
 }
 
-Scene_Game.prototype.update_mouseUp = function() {
+Scene_Game.prototype.release_piece = function() {
 	SceneManager._stage.removeChild(this._activePiece._sprite);
 	if (this._squareArea.click_zone().contains(Mouse._upX, Mouse._upY)) {
 		var x = (Mouse._upX - this._squareArea.click_zone().x) / this._scale;
@@ -153,12 +153,12 @@ Scene_Game.prototype.update = function() {
 	if (this._check_flag) {
 		this.check_square();
 		this._check_flag = false;
-	}
+	}	
 	if (Mouse._mouseDown) {
-		this.update_mouseDown();
+		this.select_piece();
 	}
 	if (Mouse._mouseUp && this._activePiece) {
-		this.update_mouseUp();
+		this.release_piece();
 	}
 	if (this._activePiece) {
 		this._activePiece._sprite.x = Mouse._x;

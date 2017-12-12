@@ -25,7 +25,8 @@ Mouse.downHandler = function(true_event) {
 	Mouse._mouseDown = true;
 	Mouse._downX = event.clientX
 	Mouse._downY = event.clientY
-	console.log(Mouse._downX, Mouse._downY)
+	Mouse._x = event.clientX
+	Mouse._y = event.clientY
   	true_event.preventDefault();
 };
 
