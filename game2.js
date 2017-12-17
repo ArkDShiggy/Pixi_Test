@@ -44,8 +44,8 @@ Scene_Game.prototype.start_scene = function() {
 	this.create_background();
 	this.create_container();
 	this.create_UI();
+	alert('Click on a cell to change its state\nClick the red button to start running the game\nClick the red button again to stop it\n')
 	SceneManager._stage.addChild(this._container);
-
 };
 
 Scene_Game.prototype.create_UI = function() {
